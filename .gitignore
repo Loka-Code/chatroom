@@ -1,0 +1,22 @@
+# 数据库文件：运行产物，不是源码。
+# 让评审在自己机器上从空库跑一遍，才叫"从零跑通"。
+chat.db
+chat.db-journal
+chat.db-wal
+chat.db-shm
+
+# Python 编译缓存
+__pycache__/
+*.pyc
+
+# 虚拟环境（如果你建了的话）
+.venv/
+venv/
+
+# 编辑器
+.vscode/
+.idea/
+
+# 系统文件
+.DS_Store
+Thumbs.db

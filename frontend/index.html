@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>极简聊天室</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 第一步：输入昵称。登录后这一块会被隐藏 -->
+    <div id="login-view" class="card">
+        <h1>极简聊天室</h1>
+        <p class="hint">输入一个昵称就能开始，不用注册</p>
+        <div class="row">
+            <input type="text" id="name-input" placeholder="你的昵称" maxlength="12">
+            <button id="login-btn">进入</button> 
+        </div>
+    </div>
+
+    <!-- 第二步：聊天界面 -->
+    <div id="chat-view" class="hidden">
+        <!-- 左侧：我是谁 + 可以聊的人 -->
+        <aside>
+            <div class="me">
+                <span>我是 <b id="me-name"></b></span>
+                <button id="logout-btn">退出</button>
+            </div>
+            <div class="label">选择聊天对象</div>
+            <ul id="user-list"></ul>
+        </aside>
+
+        <!-- 右侧：消息区 + 输入框 -->
+        <main>
+            <div id="peer-title">请从左边选一个人</div>
+            <div id="chat-box"></div>
+            <div class="row">
+                <input type="text" id="msg-input" placeholder="输入消息，回车发送" disabled>
+                <button id="send-btn" disabled>发送</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

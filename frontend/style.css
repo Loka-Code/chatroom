@@ -1,0 +1,179 @@
+/* 极简聊天室 —— 样式 */
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Microsoft YaHei", sans-serif;
+    background: #f6f4f7;
+    color: #222;
+}
+
+.hidden { display: none !important; }/* 隐藏元素 */
+
+/* ---------- 登录卡片 ---------- */
+.card {
+    max-width: 380px;
+    margin: 18vh auto;
+    padding: 32px 28px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, .08);
+}
+
+.card h1 { margin: 0 0 6px; font-size: 22px; }/* 标题 */
+.hint { margin: 0 0 20px; color: #888; font-size: 13px; }
+
+/* ---------- 通用输入行 ---------- */
+.row { display: flex; gap: 8px; }/* 输入框 + 按钮 */
+
+input {
+    flex: 1;
+    min-width: 0;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid #d5d8de;
+    border-radius: 8px;
+    outline: none;
+}
+
+input:focus { border-color: #3b82f6; }
+input:disabled { background: #f0f1f3; }
+
+button {
+    padding: 9px 18px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #fff;
+    background: #3b82f6;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover { background: #2f6fd8; }/* 按钮禁用状态 */
+button:disabled { background: #b9c0cc; cursor: not-allowed; }
+
+/* ---------- 聊天界面：左右分栏 ---------- */
+#chat-view {
+    display: flex;
+    height: 100vh;
+}
+
+aside {
+    width: 200px;
+    flex-shrink: 0;
+    padding: 16px 12px;
+    background: #fff;
+    border-right: 1px solid #e6e8ec;
+    overflow-y: auto;
+}/* 左侧用户列表 */
+
+.me {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    font-size: 13px;
+    color: #666;
+    border-bottom: 1px solid #e6e8ec;
+}/* 我的用户名 + 退出按钮 */
+
+/* 退出按钮：比主按钮小一号，颜色低调一点，不抢眼 */
+#logout-btn {
+    padding: 3px 10px;
+    font-size: 12px;
+    background: #eef0f4;
+    color: #666;
+}/* 用 #id 选择器，优先级高于上面的 button 规则，能盖掉蓝色 */
+#logout-btn:hover { background: #e2e5ea; }
+
+.label {
+    margin: 14px 0 8px;
+    font-size: 12px;
+    color: #999;
+}/* 用户列表标题 */
+
+#user-list { margin: 0; padding: 0; list-style: none; }
+
+#user-list li {
+    padding: 9px 12px;
+    margin-bottom: 4px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#user-list li:hover { background: #f0f4fb; }/* 鼠标悬停时的背景色 */
+#user-list li.active { background: #3b82f6; color: #ffffff; }/* 当前选中用户的高亮样式 */
+#user-list li.empty {
+    color: #aaa;
+    font-size: 12.5px;
+    line-height: 1.6;
+    cursor: default;
+}/* 空列表提示文字，鼠标悬停时不变色 */
+#user-list li.empty:hover { background: none; }
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    min-width: 0;
+}/* 右侧消息区 */
+
+#peer-title {
+    padding-bottom: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 1px solid #ece6e8;
+}
+
+/* ---------- 消息区 ---------- */
+#chat-box {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px 4px;
+}/* 消息列表，滚动条在右侧 */
+
+.msg { margin-bottom: 10px; }
+
+.msg .who {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 12px;
+    color: #999;
+}/* 谁发的消息 */
+
+.msg .body {
+    display: inline-block;
+    max-width: 70%;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    border-radius: 10px;
+    background: #fff;
+    /* 长消息不换行会把布局撑破，这里强制折行 */
+    word-break: break-word;
+    white-space: pre-wrap;
+}/* 消息内容，长消息自动换行 */
+
+/* 我发的：靠右、蓝底 */
+.msg.mine { text-align: right; }
+.msg.mine .body { background: #3b82f6; color: #fff; text-align: left; }
+
+/* ---------- 窄屏：侧栏变顶部横条 ---------- */
+@media (max-width: 600px) {
+    #chat-view { flex-direction: column; }
+
+    aside {
+        width: 100%;
+        max-height: 30vh;
+        border-right: none;
+        border-bottom: 1px solid #e6e8ec;
+    }
+
+    #user-list { display: flex; flex-wrap: wrap; gap: 4px; }
+    #user-list li { margin-bottom: 0; }
+}

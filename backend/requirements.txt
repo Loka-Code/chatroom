@@ -1,0 +1,7 @@
+# 后端依赖清单
+# 装法：python -m pip install -r requirements.txt
+#
+# 只有两个直接依赖，剩下的（starlette、pydantic 等）会被 pip 自动一起装上。
+# 版本写死（==）是为了让你和评审装出来的环境完全一致。
+fastapi==0.142.2
+uvicorn==0.54.0
